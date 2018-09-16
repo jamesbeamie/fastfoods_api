@@ -43,7 +43,7 @@ class Orders(object):
         """The function returns a specific order, specified by id"""
         order = [order for order in FOOD_ORDERS if order['id'] == order_id ]
         return jsonify({'Order': order})
-        
+
     # Route to palce an order
     @APP.route('/api/v1/orders', methods=['POST'])
     def place_order():
@@ -66,5 +66,14 @@ class Orders(object):
         updated_order[0]['name'] = order_details['name']#editing the name 
         updated_order[0]['Quantity'] = order_details['Quantity']#editing the qty
         return jsonify({'Order': updated_order[0]})
+
+    # this endpoint deletes the specified(using its id) order from dictionary
+    @APP.route('/api/v1/orders/<int:order_id>', methods=['DELETE'])
+    def delete_order(order_id):
+        """The function deletes an order specified by the id"""
+        order = [order for order in FOOD_ORDERS if order['id'] == order_id]
+        FOOD_ORDERS.remove(order[0])
+        return jsonify({'Orders': FOOD_ORDERS})
+        
 if __name__ == "__main__":
     APP.run(debug=True, port=2500)
