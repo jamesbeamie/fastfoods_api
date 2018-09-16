@@ -32,10 +32,17 @@ class Orders(object):
         self.order_id_counter = 0
 
     # Route to return all orders
-
     @APP.route('/api/v1/orders', methods=['GET'])
     def return_all():
         """The function returns a jsonified list of dictionaries of orders """
         return jsonify({'Orders': FOOD_ORDERS})
+
+    # Route to return specific order using order id
+    @APP.route('/api/v1/orders/<int:order_id>', methods=['GET'])
+    def return_specific(order_id):
+        """The function returns a specific order, specified by id"""
+        order = [order for order in FOOD_ORDERS if order['id'] == order_id ]
+        return jsonify({'Order': order})
+        
 if __name__ == "__main__":
     APP.run(debug=True, port=2500)

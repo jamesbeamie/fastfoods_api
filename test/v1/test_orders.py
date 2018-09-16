@@ -15,12 +15,22 @@ test_update={
         }
 #class for the unittests
 class TestApi(unittest.TestCase):
-        """The class with individual tests for individual endpoints"""
-        def test_return_all(self):
-            """Test if all orders are returned and returns success code,200"""
-            result=APP.test_client()
-            response =result.get('/api/v1/orders', content_type='application/json')
-            self.assertEqual( response.status_code, 200)
+  """The class with individual tests for individual endpoints"""
+  def test_return_all(self):
+      """Test if all orders are returned and returns success code,200"""
+      result=APP.test_client()
+      response =result.get('/api/v1/orders', content_type='application/json')
+      self.assertEqual( response.status_code, 200)
+
+  def test_return_specific(self):
+    """Test if specified order is returned and returns success code,200"""
+    result=APP.test_client()
+    #test if the order id is not specified, returns page not found,404
+    response =result.get('/api/v1/orders/1', content_type='application/json')
+    self.assertEqual( response.status_code, 200)
+
+    response =result.get('/api/v1/orders/', content_type='application/json')
+    self.assertEqual( response.status_code, 404)
 
 if __name__ == "__main__":
 	unittest.main()
