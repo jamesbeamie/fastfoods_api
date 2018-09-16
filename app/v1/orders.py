@@ -43,6 +43,18 @@ class Orders(object):
         """The function returns a specific order, specified by id"""
         order = [order for order in FOOD_ORDERS if order['id'] == order_id ]
         return jsonify({'Order': order})
-        
+    # Route to palce an order
+
+    @APP.route('/api/v1/orders', methods=['POST'])
+    def place_order():
+        """The function takes input data in json form and adds to the food order as new order"""
+        order_details = request.get_json()
+        placed_order = {
+            'id': FOOD_ORDERS[-1]['id'] + 1,
+            'name': order_details["name"],
+            'Quantity': order_details['Quantity']
+        }
+        FOOD_ORDERS.append(placed_order)
+        return jsonify({'Order': FOOD_ORDERS}), 201
 if __name__ == "__main__":
     APP.run(debug=True, port=2500)

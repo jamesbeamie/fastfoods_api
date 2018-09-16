@@ -31,6 +31,12 @@ class TestApi(unittest.TestCase):
 
     response =result.get('/api/v1/orders/', content_type='application/json')
     self.assertEqual( response.status_code, 404)
+    
+  def test_place_order(self):
+    """Test if new order is placed and returns success code,201"""
+    result=APP.test_client()
+    response =result.post('/api/v1/orders', data=json.dumps(test_orders), content_type='application/json')
+    self.assertEqual( response.status_code, 201)
 
 if __name__ == "__main__":
 	unittest.main()
