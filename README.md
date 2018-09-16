@@ -35,4 +35,4 @@ An application interface for the fast food front end.
    
 ### travisCI tests
 [![Build status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=develop!:)](https://travis-ci.org/jamesbeamie/fastfoods_api)
-[![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods-api/badge.svg?branch=master)](https://coveralls.io/github/jamesbeamie/fastfoods-api?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=master)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=master)
