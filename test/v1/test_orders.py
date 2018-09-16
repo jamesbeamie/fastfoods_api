@@ -32,5 +32,23 @@ class TestApi(unittest.TestCase):
     response =result.get('/api/v1/orders/', content_type='application/json')
     self.assertEqual( response.status_code, 404)
 
+  def test_place_order(self):
+    """Test if new order is placed and returns success code,201"""
+    result=APP.test_client()
+    response =result.post('/api/v1/orders', data=json.dumps(test_orders), content_type='application/json')
+    self.assertEqual( response.status_code, 201)
+
+  def test_update_order(self):
+    """Test if an order is updated and returns success code,200"""
+    result=APP.test_client()
+    response = result.put('/api/v1/orders/5', data=json.dumps(test_update), content_type='application/json')
+    self.assertEqual( response.status_code, 200)
+
+  def test_delete_order(self):
+    """Test if an order is deleted and returns success code,200"""
+    result=APP.test_client()
+    response =result.delete('/api/v1/orders/1', content_type='application/json')
+    self.assertEqual( response.status_code, 200)
+    
 if __name__ == "__main__":
 	unittest.main()
