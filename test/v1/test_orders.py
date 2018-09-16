@@ -43,6 +43,5 @@ class TestApi(unittest.TestCase):
     result=APP.test_client()
     response = result.put('/api/v1/orders/5', data=json.dumps(test_update), content_type='application/json')
     self.assertEqual( response.status_code, 200)
-
 if __name__ == "__main__":
 	unittest.main()
