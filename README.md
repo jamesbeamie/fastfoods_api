@@ -34,5 +34,5 @@ An application interface for the fast food front end.
    ##### Delete an order : the DELETE route - http://127.0.0.1:8080/api/v1/orders/1
    
 ### travisCI tests
-[![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=develop)](https://travis-ci.org/jamesbeamie/fastfoods_api)
-[![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=master)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=master)
+[![Build](https://travis-ci.org/jamesbeamie/fastfoods-api.svg?branch=master)](!:https://travis-ci.org/jamesbeamie/fastfoods-api)
+[![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
