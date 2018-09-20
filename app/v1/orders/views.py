@@ -17,3 +17,11 @@ def specific(order_id, **kwargs):
 	if not result:
 		return jsonify({"message":"couldn't find order_id"})
 	return result
+
+@api.route('/orders', methods=['POST'])
+def place_order():
+	data = request.get_json()
+	name = data['name']
+	price = data['price']
+	res = order_class.place_order(name, price)
+	return res

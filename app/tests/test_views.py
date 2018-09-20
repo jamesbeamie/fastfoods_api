@@ -9,7 +9,16 @@ from app import create_app
 
 class TestApi(unittest.TestCase):
   """The class with individual tests for individual endpoints"""
-  
+  test_orders={
+       'id': 1,
+       'name': 'Burger',
+       'price': 100
+        }
+  test_update={
+     'id': 5,
+     'name': 'Burger',
+     'Quantity': 1
+      }
   def setUp(self):
     self.app = create_app(config_name="testing")
     self.client = self.app.test_client
@@ -27,6 +36,11 @@ class TestApi(unittest.TestCase):
 
     response = self.client().get('/api/v1/orders/', content_type='application/json')
     self.assertEqual( response.status_code, 404)
+
+  def test_place_order(self):
+    """Test if new order is placed and returns success code,201"""
+    response = self.client().post('/api/v1/orders', data=json.dumps(self.test_orders), content_type='application/json')
+    self.assertEqual( response.status_code, 201)
     
 if __name__ == "__main__":
   unittest.main()
