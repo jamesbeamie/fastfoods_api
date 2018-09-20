@@ -11,13 +11,22 @@ class TestApi(unittest.TestCase):
   """The class with individual tests for individual endpoints"""
   
   def setUp(self):
-  	self.app = create_app(config_name="testing")
-  	self.client = self.app.test_client
-  	
+    self.app = create_app(config_name="testing")
+    self.client = self.app.test_client
+    
   def test_return_all(self):
       """Test if all orders are returned and returns success code,200"""
       response = self.client().get('/api/v1/orders', content_type='application/json')
       self.assertEqual( response.status_code, 200)
+
+  def test_return_specific(self):
+    """Test if specified order is returned and returns success code,200"""
+    #test if the order id is not specified, returns page not found,404
+    response = self.client().get('/api/v1/orders/1', content_type='application/json')
+    self.assertEqual( response.status_code, 200)
+
+    response = self.client().get('/api/v1/orders/', content_type='application/json')
+    self.assertEqual( response.status_code, 404)
     
 if __name__ == "__main__":
-	unittest.main()
+  unittest.main()
