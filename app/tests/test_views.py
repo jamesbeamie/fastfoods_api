@@ -15,9 +15,11 @@ class TestApi(unittest.TestCase):
 
 class TestOrder(TestApi):
   test_orders={
-       'id': 1,
-       'name': 'Burger',
-       'price': 100
+            "food_id": 1,
+            "food_name": "beans",
+            "order_id": 1,
+            "order_status": "completed",
+            "price": 160
         }
 
   def test_return_all(self):

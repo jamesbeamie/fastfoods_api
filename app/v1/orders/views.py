@@ -3,6 +3,7 @@ from . import api
 from .models import Orders
 
 order_class = Orders()
+
 """
 orders
 """
@@ -24,7 +25,9 @@ class OrdersViews():
 	@api.route('/orders', methods=['POST'])
 	def place():
 		data = request.get_json()
-		name = data['name']
+		food_name = data['food_name']
 		price = data['price']
-		res = order_class.place_order(name, price)
+		food_id = data['food_id']
+		order_status = data['order_status']
+		res = order_class.place_order(food_name, price, food_id, order_status)
 		return res
