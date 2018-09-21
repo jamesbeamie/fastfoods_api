@@ -14,6 +14,7 @@ class TestApi(unittest.TestCase):
     self.client = self.app.test_client
 
 class TestOrder(TestApi):
+  """creating testing dictionaries"""
   test_orders={
             "food_id": 1,
             "food_name": "beans",
