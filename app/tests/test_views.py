@@ -45,7 +45,7 @@ class TestOrder(TestApi):
     self.assertEqual( response.status_code, 201)
 
   def test_update_order(self):
-    """Test if an order is updated and returns success code,200"""
+    """Test if an order is edited and returns success code,200"""
     response = self.client().put('/api/v1/orders/5', data=json.dumps(self.test_update), content_type='application/json')
     self.assertEqual( response.status_code, 200)
     
