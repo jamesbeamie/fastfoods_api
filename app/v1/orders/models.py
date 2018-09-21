@@ -27,3 +27,12 @@ class Orders(object):
 
         self.all_orders.append(self.order)
         return jsonify({"message": "Order placed.", "Orders":self.all_orders}), 201
+
+    def update_order(self, order_id):
+        """This function edits the order place, takes user inputs in json form"""
+        order_details = request.get_json()
+        for order_to_update in self.all_orders:
+            if order_to_update['order_id'] == order_id:
+                order_to_update['name'] = order_details['name'] 
+                order_to_update['price'] = order_details['price']
+                return jsonify({'Order': self.all_orders})
