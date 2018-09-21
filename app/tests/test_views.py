@@ -20,8 +20,8 @@ class TestApi(unittest.TestCase):
       self.assertEqual( response.status_code, 200)
 
   def test_return_specific(self):
-    """Test if specified order is returned and returns success code,200"""
-    #test if the order id is not specified, returns page not found,404
+    """Test if specified order is returned and returns success code,200
+    if the order id is not specified, returns page not found,404"""
     response = self.client().get('/api/v1/orders/1', content_type='application/json')
     self.assertEqual( response.status_code, 200)
 
