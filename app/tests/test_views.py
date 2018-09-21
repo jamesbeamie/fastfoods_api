@@ -15,15 +15,19 @@ class TestApi(unittest.TestCase):
 
 class TestOrder(TestApi):
   test_orders={
-       'id': 1,
-       'name': 'Burger',
-       'price': 100
+            "food_id": 1,
+            "food_name": "beans",
+            "order_id": 1,
+            "order_status": "completed",
+            "price": 160
         }
   test_update={
-     'id': 5,
-     'name': 'Burger',
-     'Quantity': 1
-      }
+            "food_id": 1,
+            "food_name": "beans",
+            "order_id": 1,
+            "order_status": "completed",
+            "price": 160
+        }
 
   def test_return_all(self):
       """Test if all orders are returned and returns success code,200"""
@@ -45,9 +49,10 @@ class TestOrder(TestApi):
     self.assertEqual( response.status_code, 201)
 
   def test_update_order(self):
-    """Test if an order is edited and returns success code,200"""
+    """Test if an order is updated and returns success code,200"""
     response = self.client().put('/api/v1/orders/5', data=json.dumps(self.test_update), content_type='application/json')
     self.assertEqual( response.status_code, 200)
+
     
 if __name__ == "__main__":
   unittest.main()

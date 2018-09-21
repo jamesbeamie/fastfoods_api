@@ -16,14 +16,16 @@ class Orders(object):
             if order['order_id'] == order_id:
                 return jsonify({"order":order})
 
-    def place_order(self, name, price):
+    def place_order(self, food_name, price, food_id, order_status):
         """Create order"""
         self.order = {}
         self.order_id = len(self.all_orders)
 
         self.order['order_id'] = self.order_id + 1
-        self.order['name'] = name
+        self.order['food_name'] = food_name
         self.order['price'] = price
+        self.order['food_id'] = food_id
+        self.order['order_status'] = order_status
 
         self.all_orders.append(self.order)
         return jsonify({"message": "Order placed.", "Orders":self.all_orders}), 201
@@ -33,6 +35,8 @@ class Orders(object):
         order_details = request.get_json()
         for order_to_update in self.all_orders:
             if order_to_update['order_id'] == order_id:
-                order_to_update['name'] = order_details['name'] 
+                order_to_update['food_name'] = order_details['food_name'] 
                 order_to_update['price'] = order_details['price']
+                order_to_update['food_id'] = order_details['food_id']
+                order_to_update['order_status'] = order_details['order_status']
                 return jsonify({'Order': self.all_orders})
