@@ -28,7 +28,7 @@ class OrdersViews():
 		price = data['price']
 		res = order_class.place_order(name, price)
 		return res
-
+	#update an existing order
 	@api.route('/orders/<int:order_id>', methods=['PUT'])
 	def update(order_id, **kwargs):
 		"""method to return a specific order"""
