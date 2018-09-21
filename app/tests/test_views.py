@@ -48,6 +48,11 @@ class TestOrder(TestApi):
     """Test if an order is updated and returns success code,200"""
     response = self.client().put('/api/v1/orders/5', data=json.dumps(self.test_update), content_type='application/json')
     self.assertEqual( response.status_code, 200)
+
+  def test_delete_order(self):
+      """Test if an order is deleted and returns success code,200"""
+      response = self.client().delete('/api/v1/orders/1', content_type='application/json')
+      self.assertEqual( response.status_code, 200)
     
 if __name__ == "__main__":
   unittest.main()
