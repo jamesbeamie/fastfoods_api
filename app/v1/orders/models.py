@@ -10,4 +10,8 @@ class Orders(object):
             return jsonify({"Orders": self.all_orders}), 200
         return jsonify({"message":"Kindly place your order."})        
 
-    
+    def return_specific(self, order_id):
+        """The function returns a specific order, specified by id"""
+        for order in self.all_orders:
+            if order['order_id'] == order_id:
+                return jsonify({"order":order})
