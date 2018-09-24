@@ -5,7 +5,7 @@ An application interface for the fast food front end.
 
  ### DESCRIPTION
  - This API has end points that allows the user to place a new order for food,
- - get a list of orders, get a specific order and update order status.
+ - get a list of orders, get a specific order and update order status and delete the order.
 
 ### How to run the application locally: 
 - change directory on your terminal to the virtual environment
