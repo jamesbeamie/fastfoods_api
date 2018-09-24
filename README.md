@@ -22,6 +22,4 @@ An application interface for the fast food front end.
     ##### Update an order : On postman, select PUT method, add the input fields in the body section and send the request - http://127.0.0.1:8080/api/v1/orders/1
    ##### Delete an order : On postman, select DELETE method and add the id of the field to delete after the url - http://127.0.0.1:8080/api/v1/orders/1
    
-### travisCI tests
-[![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=master)](https://travis-ci.org/jamesbeamie/fastfoods_api)
-[![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
+
