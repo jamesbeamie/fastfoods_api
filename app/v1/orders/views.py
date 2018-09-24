@@ -20,3 +20,14 @@ class OrdersViews():
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
 		return result
+
+	@api.route('/orders', methods=['POST'])
+	def place():
+		data = request.get_json()
+		food_name = data['food_name']
+		price = data['price']
+		food_id = data['food_id']
+		order_status = data['order_status']
+		res = order_class.place_order(food_name, price, food_id, order_status)
+		return res
+
