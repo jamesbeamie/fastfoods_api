@@ -31,7 +31,7 @@ class OrdersViews():
 		order_status = data['order_status']
 		res = order_class.place_order(food_name, price, food_id, order_status)
 		return res
-
+  
 	@api.route('/orders/<int:order_id>', methods=['PUT'])
 	def update(order_id, **kwargs):
 		"""method to return a specific order"""
