@@ -53,3 +53,4 @@ class Foods(object):
     def __init__(self):
         """ Initialize empty food list"""  
         self.all_foods = []
+

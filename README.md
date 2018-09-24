@@ -24,3 +24,29 @@
 [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ft-delete-order-160325634)](https://travis-ci.org/jamesbeamie/fastfoods_api)
 [![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
 
+## ADDED AN END POINT TO RETURN ALL ORDERS
+- This end point returns all orders
+## TravisCi badges
+- [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ft-all-orders-160309430)](https://travis-ci.org/jamesbeamie/fastfoods_api)
+## Coveralls
+- [![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
+
+## END POINT TO RETURN SPECIFIC ORDER
+- This end point return returns a specific order specified by id
+## TravisCI test coverage
+- [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ft-return-specific-160309461)](https://travis-ci.org/jamesbeamie/fastfoods_api)
+## Coveralls Test coverag
+- [![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
+
+## END POINT TO PLACE AN ORDER
+- This allows a user to place an order by providing order details
+## TravisCI coverage
+- [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ft-update-order-160309503)](https://travis-ci.org/jamesbeamie/fastfoods_api)
+## Coveralls
+- [![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
+## END POINT TO UPDATE AN ORDER
+- This allows a user to update an order by providing order details
+## END POINT TO DELETE AN ORDER
+- This allows a user to delete an order by providing order details
+## TravisCI coverage
+- [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ft-delete-order-160325634)](https://travis-ci.org/jamesbeamie/fastfoods_api)
