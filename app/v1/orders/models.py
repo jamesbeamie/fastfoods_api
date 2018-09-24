@@ -48,3 +48,4 @@ class Orders(object):
             if order['order_id'] == order_id:
                 self.all_orders.remove(order)
                 return jsonify({'Orders': self.all_orders, "message":"DELETED"})
+
