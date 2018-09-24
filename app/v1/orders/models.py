@@ -40,3 +40,12 @@ class Orders(object):
                 order_to_update['food_id'] = order_details['food_id']
                 order_to_update['order_status'] = order_details['order_status']
                 return jsonify({'Order': self.all_orders})
+
+    # this endpoint deletes the specified(using its id) order from dictionary
+    def delete_order(self, order_id):
+        """The function deletes an order specified by the id"""
+        for order in self.all_orders:
+            if order['order_id'] == order_id:
+                self.all_orders.remove(order)
+                return jsonify({'Orders': self.all_orders, "message":"DELETED"})
+
