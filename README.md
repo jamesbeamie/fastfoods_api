@@ -1,8 +1,6 @@
 
-## END POINT TO DELETE AN ORDER
+## END POINT TO GET ALL THE AVAILABLE FOOD
 - This allows a user to delete an order by providing order details
-## Relevant pivortal tracker stories
-- https://www.pivotaltracker.com/story/show/160325634
 ## TravisCI coverage
 - [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ft-all-food-160710916)](https://travis-ci.org/jamesbeamie/fastfoods_api)
 ## Coveralls
