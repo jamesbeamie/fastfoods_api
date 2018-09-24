@@ -16,11 +16,11 @@ An application interface for the fast food front end.
 ### TESTING ON POSTMAN
 
 - Clone the repo (https://github.com/jamesbeamie/fastfoodfastapi.git).
-    ##### View all orders : GET route - http://127.0.0.1:8080/api/v1/orders
-   ##### Voew a specific order : GET route - http://127.0.0.1:8080/api/v1/orders/1
-    ##### Place an order : POST route - http://127.0.0.1:8080/api/v1/orders
-    ##### Update an order : PUT route - http://127.0.0.1:8080/api/v1/orders/1
-   ##### Delete an order : the DELETE route - http://127.0.0.1:8080/api/v1/orders/1
+    ##### View all orders :Get to postman, select GET method and send the request using the url - http://127.0.0.1:8080/api/v1/orders
+   ##### View a specific order : On postman, select GET method, add an id to the url - http://127.0.0.1:8080/api/v1/orders/1
+    ##### Place an order :On postman, select POST method, add the input fields and send the request using the url - http://127.0.0.1:8080/api/v1/orders
+    ##### Update an order : On postman, select PUT method, add the input fields in the body section and send the request - http://127.0.0.1:8080/api/v1/orders/1
+   ##### Delete an order : On postman, select DELETE method and add the id of the field to delete after the url - http://127.0.0.1:8080/api/v1/orders/1
    
 ### travisCI tests
 [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ft-delete-order-160325634)](https://travis-ci.org/jamesbeamie/fastfoods_api)
