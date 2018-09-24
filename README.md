@@ -1,5 +1,5 @@
 
-## CHORE CREATING THE FOOD CLASS
+## ADDED THE FOOD CLASS
 - created the class to hold food methods and routes
 ## Relevant pivortal tracker stories
 - https://www.pivotaltracker.com/story/show/160710934
