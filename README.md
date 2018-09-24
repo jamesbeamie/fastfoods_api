@@ -7,22 +7,11 @@ An application interface for the fast food front end.
  - This API has end points that allows the user to place a new order for food,
  - get a list of orders, get a specific order and update order status.
 
-### The functions are to allow the user: 
-- view all orders
- > #### pivortal tracker story
-   - https://www.pivotaltracker.com/story/show/160309430
-- view a specific order.
- > #### pivortal tracker story
-   - https://www.pivotaltracker.com/story/show/160309461
-- place an order.
- > #### pivortal tracker story
-   - https://www.pivotaltracker.com/story/show/160309422
-- update an order.
- > #### pivortal tracker story
-   - https://www.pivotaltracker.com/story/show/160309503
-- delete an order.
- > #### pivortal tracker story
-   - https://www.pivotaltracker.com/story/show/160325634
+### How to run the application locally: 
+- change directory on your terminal to the virtual environment
+- change directory to the Scripts folder run < activate to activate the virtual environment >
+- change directory to the root folder and run < python run.py > to run the application
+ 
 
 ### TESTING ON POSTMAN
 
