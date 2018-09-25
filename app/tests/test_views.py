@@ -14,7 +14,6 @@ class TestApi(unittest.TestCase):
     self.client = self.app.test_client
 
 class TestOrder(TestApi):
-  """creating dictionaries to test"""
   test_orders={
             "food_id": 1,
             "food_name": "beans",
@@ -67,6 +66,15 @@ class TestFood(TestApi):
       """Test if all food returned and returns success code,200"""
       response = self.client().get('/api/v1/food', content_type='application/json')
       self.assertEqual( response.status_code, 200)
+
+  def test_specific_fud(self):
+    """Test if specified order is returned and returns success code,200"""
+    #test if the order id is not specified, returns page not found,404
+    response = self.client().get('/api/v1/food/1', content_type='application/json')
+    self.assertEqual( response.status_code, 200)
+
+    response = self.client().get('/api/v1/food/', content_type='application/json')
+    self.assertEqual( response.status_code, 404)
     
 if __name__ == "__main__":
   unittest.main()

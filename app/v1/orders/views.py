@@ -3,6 +3,7 @@ from . import api
 from .models import Orders, Foods
 
 order_class = Orders()
+food_class = Foods()
 
 """
 orders
@@ -47,14 +48,22 @@ class OrdersViews():
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
 		return result
-		
-		"""
-		Food
-		"""
-food_class = Foods()
+
+
+"""
+food
+"""
 class FoodViews():
 	@api.route('/food', methods=["GET"])
 	def all_foods():
 	  """ Method to place and get food."""
 	  ready_food = food_class.available_food()
 	  return ready_food
+
+	@api.route('/food/<int:food_id>', methods=['GET'])
+	def specific_fud(food_id, **kwargs):
+		"""method to return a specific food"""
+		result = food_class.specific_food(food_id)
+		if not result:
+			return jsonify({"message":"couldn't find food_id"})
+		return result
