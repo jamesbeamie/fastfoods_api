@@ -59,7 +59,7 @@ class TestOrder(TestApi):
       response = self.client().delete('/api/v1/orders/1', content_type='application/json')
       self.assertEqual( response.status_code, 200)
 
-      response = self.client().get('/api/v1/orders/', content_type='application/json')
+      response = self.client().delete('/api/v1/orders/', content_type='application/json')
       self.assertEqual( response.status_code, 404)
 
 class TestFood(TestApi):
