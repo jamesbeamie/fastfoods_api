@@ -49,6 +49,7 @@ class Orders(object):
                 self.all_orders.remove(order)
                 return jsonify({'Orders': self.all_orders, "message":"DELETED"})
 
+
 class Foods(object):
     def __init__(self):
         """ Initialize empty list for foods"""  
@@ -94,3 +95,4 @@ class Foods(object):
             if food['food_id'] == food_id:
                 self.all_foods.remove(food)
                 return jsonify({'Foods': self.all_foods, "message":"Food deleted"})
+
