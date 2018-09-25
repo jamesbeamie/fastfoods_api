@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
 from . import api
 from .models import Orders
-
 order_class = Orders()
-
 """
 orders
 """
@@ -47,3 +45,4 @@ class OrdersViews():
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
 		return result
+
