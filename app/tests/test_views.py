@@ -2,6 +2,7 @@
 import unittest
 import os
 import json
+#from flask_testing import TestCase
 from app import create_app
 """the dictionaries are used for testing endpoints"""
 #class for the unittests
