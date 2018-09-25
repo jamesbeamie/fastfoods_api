@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from . import api
-from .models import Orders
+from .models import Orders, Foods
 order_class = Orders()
+food_class = Foods()
 """
 orders
 """
