@@ -47,47 +47,5 @@ class OrdersViews():
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
 		return result
-	"""
-food
-"""
-class FoodViews():
-	@api.route('/food', methods=["GET"])
-	def all_foods():
-	  """ Method to place and get food."""
-	  ready_food = food_class.available_food()
-	  return ready_food
-
-	@api.route('/food/<int:food_id>', methods=['GET'])
-	def specific_fud(food_id, **kwargs):
-		"""method to return a specific food"""
-		result = food_class.specific_food(food_id)
-		if not result:
-			return jsonify({"message":"couldn't find food_id"})
-		return result
-
-	@api.route('/food', methods=['POST'])
-	def prepared_food():
-		data = request.get_json()
-		food_name = data['food_name']
-		price = data['price']
-		quantity = data['quantity']
-		res = food_class.create_food(food_name, price, quantity)
-		return res
-
-	@api.route('/food/<int:food_id>', methods=['PUT'])
-	def update_fud(food_id, **kwargs):
-		"""method to edit details of a specific food"""
-		result = food_class.update_food(food_id)
-		if not result:
-			return jsonify({"message":"couldn't find food_id"})
-		return result
-
-	@api.route('/food/<int:food_id>', methods=['DELETE'])
-	def delete_fud(food_id, **kwargs):
-		"""method to clear a specific food"""
-		result = food_class.delete_food(food_id)
-		if not result:
-			return jsonify({"message":"couldn't find food_id"})
-		return result
 
 
