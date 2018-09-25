@@ -104,6 +104,6 @@ class TestFood(TestApi):
       """Test if an order is deleted and returns success code,200"""
       response = self.client().delete('/api/v1/food/1', content_type='application/json')
       self.assertEqual( response.status_code, 200)
-    
+  
 if __name__ == "__main__":
   unittest.main()

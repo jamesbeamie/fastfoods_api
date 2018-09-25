@@ -53,7 +53,7 @@ class Foods(object):
     def __init__(self):
         """ Initialize empty food list"""  
         self.all_foods = []
-
+        
     def available_food(self):
         if len(self.all_foods) > 0:
             return jsonify({"Foods": self.all_foods}), 200
