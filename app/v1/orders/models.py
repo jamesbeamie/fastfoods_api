@@ -51,7 +51,7 @@ class Orders(object):
 
 class Foods(object):
     def __init__(self):
-        """ Initialize empty food list"""  
+        """ Initialize empty list for foods"""  
         self.all_foods = []
 
     def available_food(self):
@@ -78,7 +78,7 @@ class Foods(object):
         return jsonify({"message": "Food added.", "Foods":self.all_foods}), 201        
 
     def update_food(self, food_id):
-        """This function edits the order place, takes user inputs in json form"""
+        """This function edits the order by taking user inputs in json form"""
         food_details = request.get_json()
         for food_to_update in self.all_foods:
             if food_to_update['food_id'] == food_id:
