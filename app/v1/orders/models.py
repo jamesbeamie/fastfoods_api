@@ -49,18 +49,5 @@ class Orders(object):
                 self.all_orders.remove(order)
                 return jsonify({'Orders': self.all_orders, "message":"DELETED"})
 
-class Foods(object):
-    def __init__(self):
-        """ Initialize empty food list"""  
-        self.all_foods = []
 
-    def available_food(self):
-        if len(self.all_foods) > 0:
-            return jsonify({"Foods": self.all_foods}), 200
-        return jsonify({"message":"No food available."})
-    def specific_food(self, food_id):
-        """The function returns a specific food, specified by id"""
-        for a_food in self.all_foods:
-            if a_food['food_id'] == food_id:
-                return jsonify({"food":a_food})
 
