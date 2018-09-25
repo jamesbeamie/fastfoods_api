@@ -63,3 +63,34 @@ class Foods(object):
         for a_food in self.all_foods:
             if a_food['food_id'] == food_id:
                 return jsonify({"food":a_food})
+
+    def create_food(self, food_name, price, quantity):
+        """Create food"""
+        self.food = {}
+        self.food_id = len(self.all_foods)
+
+        self.food['food_id'] = self.food_id + 1
+        self.food['food_name'] = food_name
+        self.food['price'] = price
+        self.food['quantity'] = quantity
+
+        self.all_foods.append(self.food)
+        return jsonify({"message": "Food added.", "Foods":self.all_foods}), 201        
+
+    def update_food(self, food_id):
+        """This function edits the order place, takes user inputs in json form"""
+        food_details = request.get_json()
+        for food_to_update in self.all_foods:
+            if food_to_update['food_id'] == food_id:
+                food_to_update['food_name'] = food_details['food_name'] 
+                food_to_update['price'] = food_details['price']
+                food_to_update['quantity'] = food_details['quantity']
+                return jsonify({'Food': self.all_foods})
+
+    # this endpoint deletes the specified order from dictionary using the order id
+    def delete_food(self, food_id):
+        """The function deletes an order specified by the id"""
+        for food in self.all_foods:
+            if food['food_id'] == food_id:
+                self.all_foods.remove(food)
+                return jsonify({'Foods': self.all_foods, "message":"Food deleted"})

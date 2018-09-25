@@ -67,3 +67,28 @@ class FoodViews():
 		if not result:
 			return jsonify({"message":"couldn't find food_id"})
 		return result
+
+	@api.route('/food', methods=['POST'])
+	def prepared_food():
+		data = request.get_json()
+		food_name = data['food_name']
+		price = data['price']
+		quantity = data['quantity']
+		res = food_class.create_food(food_name, price, quantity)
+		return res
+
+	@api.route('/food/<int:food_id>', methods=['PUT'])
+	def update_fud(food_id, **kwargs):
+		"""method to edit details of a specific food"""
+		result = food_class.update_food(food_id)
+		if not result:
+			return jsonify({"message":"couldn't find food_id"})
+		return result
+
+	@api.route('/food/<int:food_id>', methods=['DELETE'])
+	def delete_fud(food_id, **kwargs):
+		"""method to clear a specific food"""
+		result = food_class.delete_food(food_id)
+		if not result:
+			return jsonify({"message":"couldn't find food_id"})
+		return result
