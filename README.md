@@ -1,5 +1,5 @@
 
-## END POINTS FOR ORDERS PAGE
+## END POINTS FOR ORDERS AND FOODS PAGE
 
  ### DESCRIPTION
  - This API has end points that allows the user to place a new order for food,
@@ -50,3 +50,10 @@
 ##### travisCI tests
 [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=develop)](https://travis-ci.org/jamesbeamie/fastfoods_api)
 [![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
+
+## ADDED A TEST FOR THE DELETE_ORDER END POINT
+- This tests incase the url of the end point does not have an id supplied
+## TravisCI coverage
+- [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=ch-add-test-160742653)](https://travis-ci.org/jamesbeamie/fastfoods_api)
+## Coveralls
+- [![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=ft-all-food-160710916)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=ft-all-food-160710916)

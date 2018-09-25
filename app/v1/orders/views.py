@@ -47,3 +47,10 @@ class OrdersViews():
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
 		return result
+		
+class FoodViews():
+	@api.route('/food', methods=["GET"])
+	def all_foods():
+	  """ Method to place and get food."""
+	  ready_food = food_class.available_food()
+	  return ready_food
