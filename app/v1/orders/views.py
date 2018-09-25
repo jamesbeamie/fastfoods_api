@@ -54,12 +54,14 @@ class OrdersViews():
 food
 """
 class FoodViews():
+	#route to get all the food available
 	@api.route('/food', methods=["GET"])
 	def all_foods():
 	  """ Method to place and get food."""
 	  ready_food = food_class.available_food()
 	  return ready_food
-
+	  
+	#route to get a specific food
 	@api.route('/food/<int:food_id>', methods=['GET'])
 	def specific_fud(food_id, **kwargs):
 		"""method to return a specific food"""
@@ -68,6 +70,7 @@ class FoodViews():
 			return jsonify({"message":"couldn't find food_id"})
 		return result
 
+	#route to add food the the list of foods
 	@api.route('/food', methods=['POST'])
 	def prepared_food():
 		data = request.get_json()
@@ -77,6 +80,7 @@ class FoodViews():
 		res = food_class.create_food(food_name, price, quantity)
 		return res
 
+	#route to edit food
 	@api.route('/food/<int:food_id>', methods=['PUT'])
 	def update_fud(food_id, **kwargs):
 		"""method to edit details of a specific food"""
@@ -85,6 +89,7 @@ class FoodViews():
 			return jsonify({"message":"couldn't find food_id"})
 		return result
 
+	#route to delete food
 	@api.route('/food/<int:food_id>', methods=['DELETE'])
 	def delete_fud(food_id, **kwargs):
 		"""method to clear a specific food"""
