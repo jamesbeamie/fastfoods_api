@@ -48,6 +48,9 @@ class OrdersViews():
 			return jsonify({"message":"couldn't find order_id"})
 		return result
 		
+		"""
+		Food
+		"""
 food_class = Foods()
 class FoodViews():
 	@api.route('/food', methods=["GET"])
