@@ -61,6 +61,6 @@ class TestOrder(TestApi):
       response = self.client().delete('/api/v1/orders/', content_type='application/json')
       self.assertEqual( response.status_code, 404)
 
-
+  
 if __name__ == "__main__":
   unittest.main()

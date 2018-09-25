@@ -50,4 +50,3 @@ class Orders(object):
                 return jsonify({'Orders': self.all_orders, "message":"DELETED"})
 
 
-
