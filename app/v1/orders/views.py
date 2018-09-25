@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
 from . import api
-from .models import Orders, Foods
-
+from .models import Orders
 order_class = Orders()
-food_class = Foods()
 """
 orders
 """
@@ -48,12 +46,4 @@ class OrdersViews():
 			return jsonify({"message":"couldn't find order_id"})
 		return result
   
-		"""
-		Food
-		"""
-class FoodViews():
-	@api.route('/food', methods=["GET"])
-	def all_foods():
-	  """ Method to place and get food."""
-	  ready_food = food_class.available_food()
-	  return ready_food
+
