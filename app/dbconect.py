@@ -1,9 +1,6 @@
 import psycopg2
 import os
 
-import os
-import psycopg2
-
 #local imports
 from .mydb import queries
 
@@ -12,7 +9,7 @@ def dbcon():
 	#url = os.getenv('DATABASE_URL')
 
 	#set connection
-	con = psycopg2.connect('dbname=challenge2 host=localhost user=jimmy password=james23')
+	con = psycopg2.connect('dbname=challenge1 host=localhost user=andela password=bootcamp')
 	return con
 
 def init_db():

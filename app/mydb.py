@@ -1,11 +1,9 @@
-order_table="""CREATE TABLE IF NOT EXISTS orders(
+order_table="""CREATE TABLE IF NOT EXISTS myorders(
 						order_id serial PRIMARY KEY,
 						food_name VARCHAR(20) NOT NULL,
 						price INT NOT NULL,
 						food_id INT NOT NULL,
-						client_id INT NOT NULL,
-						client_name VARCHAR(20) NOT NULL,
-						order_status VARCHAR(10) NOT NULL
+						order_status VARCHAR (30) NOT NULL
 					)"""
 
 food_table="""CREATE TABLE IF NOT EXISTS food(

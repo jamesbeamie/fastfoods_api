@@ -15,6 +15,9 @@ def create_app(config_name):
 
     from .v1.orders import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api/v1')
+
+    from .v2.orders import api2 as api2_blueprint
+    app.register_blueprint(api2_blueprint, url_prefix='/api/v2')
     
     return app
   
