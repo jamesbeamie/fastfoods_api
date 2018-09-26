@@ -4,6 +4,7 @@ import os
 import os
 import psycopg2
 
+#local imports
 from .mydb import queries
 
 def dbcon():
