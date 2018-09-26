@@ -25,3 +25,21 @@ class Orders(object):
 
         #self.all_orders.append(self.order)
         #return jsonify({"message": "Order placed.", "Orders":self.all_orders}), 201
+
+    def update_order(self, order_id):
+        """This function edits the order place, takes user inputs in json form"""
+        order_details = request.get_json()
+        food_name = order_details['food_name'] 
+        price = order_details['price']
+        food_id = order_details['food_id']
+        order_status = order_details['order_status']
+        
+    
+        con = dbcon()
+        cur = con.cursor()
+        cur.execute("UPDATE  myorders SET food_name=%s, price=%s, food_id= %s, order_status= %s WHERE order_id=%s",(food_name, price, food_id, order_status, order_id))
+        con.commit()
+            
+        cur.execute("SELECT * FROM myorders")
+        res = cur.fetchall()
+        return jsonify({'Order': res})

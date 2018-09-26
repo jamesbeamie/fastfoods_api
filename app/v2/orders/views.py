@@ -20,3 +20,12 @@ class OrdersViews():
 		food_id = data['food_id']
 		order_status = data['order_status']
 		return order_class.place_order(food_name, price, food_id, order_status)
+
+	
+	@api2.route('/orders/<int:order_id>', methods=['PUT'])
+	def update(order_id, **kwargs):
+		"""method to return a specific order"""
+		result = order_class.update_order(order_id)
+		#if not result:
+			#return jsonify({"message":"couldn't find order_id"})
+		return result
