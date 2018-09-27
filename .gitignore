@@ -1,3 +1,6 @@
 venv/
 .pytest_cache/
 __pycache__/
+*v2/
+mydb.py/
+dbconnect.py/
