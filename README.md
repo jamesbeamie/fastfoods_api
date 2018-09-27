@@ -1,7 +1,7 @@
 
 ## END POINTS FOR ORDERS AND FOODS PAGE
  ### DESCRIPTION
- - This API has end points that allows the user to place a new order for food,
+ - This API has end points that allows the user to register, place a new order for food,
  - get a list of orders, get a specific order and update order status and delete the order.
 
 ### How to run the application locally: 
@@ -18,6 +18,7 @@
     ##### Place an order :On postman, select POST method, add the input fields and send the request using the url - http://127.0.0.1:8080/api/v1/orders
     ##### Update an order : On postman, select PUT method, add the input fields in the body section and send the request - http://127.0.0.1:8080/api/v1/orders/1
    ##### Delete an order : On postman, select DELETE method and add the id of the field to delete after the url - http://127.0.0.1:8080/api/v1/orders/1
+
 
 ## TravisCI coverage
 -[![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=develop)](https://travis-ci.org/jamesbeamie/fastfoods_api)
