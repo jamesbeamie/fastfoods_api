@@ -12,12 +12,14 @@ food_table="""CREATE TABLE IF NOT EXISTS food(
 						price INT NOT NULL,
 						quantity INT NOT NULL
 					)"""
-user_table="""CREATE TABLE IF NOT EXISTS users(
+user_table="""CREATE TABLE IF NOT EXISTS my_users(
 						user_id serial PRIMARY KEY,
-						user_name VARCHAR(20) NOT NULL,
+						username VARCHAR(20) NOT NULL,
+						password VARCHAR(20) NOT NULL,
+						confirmpass VARCHAR(20) NOT NULL,
 						addres VARCHAR(30) NOT NULL,
 						contact INT NOT NULL,
-						type VARCHAR(10) NOT NULL
+						user_type VARCHAR(10) NOT NULL
 					)"""
 
 queries = [order_table, food_table, user_table]
