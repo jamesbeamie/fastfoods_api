@@ -7,7 +7,7 @@ class Orders(object):
     def all_order(self):
         """ fetch all orders """
         if len(self.all_orders) > 0:
-            return jsonify({"Orders": self.all_orders}), 200
+            return jsonify({"Orders": self.all_orders})
         return jsonify({"message":"Kindly place your order."})
 
     def return_specific(self, order_id):
@@ -28,7 +28,7 @@ class Orders(object):
         self.order['order_status'] = order_status
 
         self.all_orders.append(self.order)
-        return jsonify({"message": "Order placed.", "Orders":self.all_orders}), 201
+        return jsonify({"message": "Order placed.", "Orders":self.all_orders})
 
     def update_order(self, order_id):
         """This function edits the order place, takes user inputs in json form"""
