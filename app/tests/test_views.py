@@ -3,6 +3,7 @@ from flask import session
 import unittest
 import os
 import json
+from app import create_app
 
 #class for the unittests
 class TestApi(unittest.TestCase):
