@@ -107,7 +107,7 @@ def validate_data(data):
 @api2.route('/orders', methods=["GET"])
 def all_orders():
 	""" Method to place and get Orders."""
-	return order_class.all_order()
+	return order_class.all_order(), 200
 
 @api2.route('/orders', methods=['POST'])
 def place():
@@ -119,7 +119,7 @@ def place():
   order_status = data['order_status']
   if res == "valid":
     result = order_class.place_order(food_name, price, food_id, order_status)
-    return result
+    return result, 200
   return jsonify({"message":res}), 400
 
 
@@ -127,13 +127,13 @@ def place():
 def update(order_id, **kwargs):
 	"""method to return a specific order"""
 	result = order_class.update_order(order_id)
-	return result
+	return result, 201
 
 @api2.route('/orders/<int:order_id>', methods=['DELETE'])
 def delet(order_id, **kwargs):
   """method to return a specific order"""
   result = order_class.delete_order(order_id)
-  return result
+  return result, 200
 
 
 """
