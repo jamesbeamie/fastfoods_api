@@ -9,14 +9,14 @@ def validate_data(data):
     try:
         #check if the food name is provided
         if len(data['food_name']) == 0:
-            return "Enter food name"
+            return "Error Enter food name"
         # check if food price is valid
         elif " " in data['price']:
-            return "Invalid food price"
+            return "Error Invalid food price"
         else:
             return "valid"
     except Exception as error:
-        return "please provide all the fields, missing " + str(error)
+        return "Error please provide all the fields, missing " + str(error)
 
 """
 orders
@@ -25,7 +25,7 @@ orders
 def all_orders():
   """ Method to place and get Orders."""
   available_orders = order_class.all_order()
-  return available_orders
+  return available_orders, 200
 
 @api.route('/orders/<int:order_id>', methods=['GET'])
 def specific(order_id, **kwargs):
@@ -33,7 +33,7 @@ def specific(order_id, **kwargs):
 	result = order_class.return_specific(order_id)
 	if not result:
 		return jsonify({"message":"couldn't find order_id"})
-	return result
+	return result, 200
 
 @api.route('/orders', methods=['POST'])
 def place():
@@ -45,8 +45,8 @@ def place():
 	order_status = data['order_status']
 	if res == "valid":
 		result = order_class.place_order(food_name, price, food_id, order_status)
-		return result
-	return jsonify({"message":res}), 400
+		return result, 201
+	return jsonify({"message":res})
 
 @api.route('/orders/<int:order_id>', methods=['PUT'])
 def update(order_id, **kwargs):
@@ -54,7 +54,7 @@ def update(order_id, **kwargs):
 	result = order_class.update_order(order_id)
 	if not result:
 		return jsonify({"message":"couldn't find order_id"})
-	return result
+	return result, 200
 
 @api.route('/orders/<int:order_id>', methods=['DELETE'])
 def to_delete(order_id, **kwargs):
@@ -62,7 +62,7 @@ def to_delete(order_id, **kwargs):
 	result = order_class.delete_order(order_id)
 	if not result:
 		return jsonify({"message":"couldn't find order_id"})
-	return result
+	return result, 200
 
 
 """

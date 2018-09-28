@@ -80,7 +80,7 @@ class Orders(User):
         casa = self.curs()
         casa.execute("INSERT INTO myorders (food_name, price, food_id, order_status) VALUES (%(food_name)s,%(price)s,%(food_id)s,%(order_status)s);",{'food_name':food_name,'price':price,'food_id':food_id,'order_status':order_status})
         self.con.commit()
-        return jsonify({"message":"order created"}), 200
+        return jsonify({"message":"order created"}), 201
 
     def update_order(self, order_id):
         """This function edits the order place, takes user inputs in json form"""
