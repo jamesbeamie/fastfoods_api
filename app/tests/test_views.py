@@ -3,14 +3,12 @@ from flask import session
 import unittest
 import os
 import json
-"""the dictionaries are used for testing endpoints"""
-#class for the unittests
 
+#class for the unittests
 class TestApi(unittest.TestCase):
   """The class with individual tests for individual endpoints"""
   def setUp(self):
     """Setting up test client"""
-    self.app = create_app(config_name="testing")
     self.client = self.app.test_client
 
 class TestOrder(TestApi):
