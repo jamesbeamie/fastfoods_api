@@ -3,8 +3,6 @@ from flask import session
 import unittest
 import os
 import json
-from app import create_app, init_db
-from app.mydb import queries
 """the dictionaries are used for testing endpoints"""
 #class for the unittests
 
