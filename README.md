@@ -4,7 +4,7 @@
  - This API has end points that allows the user to place a new order for food,
  - get a list of orders, get a specific order and update order status and delete the order.
 
-### How to run the application locally: 
+### How to run the application locally : 
 - change directory on your terminal to the virtual environment
 - change directory to the Scripts folder run < activate to activate the virtual environment >
 - change directory to the root folder and run < python run.py > to run the application
