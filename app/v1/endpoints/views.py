@@ -19,7 +19,7 @@ class OrdersViews():
 		"""method to return a specific order"""
 		result = order_class.return_specific(order_id)
 		if not result:
-			return jsonify({"message":"couldn't find order_id"})
+			return jsonify({"message":"couldn't find order_id"}), 400
 		return result
 
 	@api.route('/orders', methods=['POST'])
@@ -37,7 +37,7 @@ class OrdersViews():
 		"""method to return a specific order"""
 		result = order_class.update_order(order_id)
 		if not result:
-			return jsonify({"message":"couldn't find order_id"})
+			return jsonify({"message":"couldn't find order_id"}), 400
 		return result
 
 	@api.route('/orders/<int:order_id>', methods=['DELETE'])
@@ -45,7 +45,7 @@ class OrdersViews():
 		"""method to return a specific order"""
 		result = order_class.delete_order(order_id)
 		if not result:
-			return jsonify({"message":"couldn't find order_id"})
+			return jsonify({"message":"couldn't find order_id"}), 400
 		return result
 
 
@@ -66,7 +66,7 @@ class FoodViews():
 		"""method to return a specific food"""
 		result = food_class.specific_food(food_id)
 		if not result:
-			return jsonify({"message":"couldn't find food_id"})
+			return jsonify({"message":"couldn't find food_id"}), 400
 		return result
 
 	#route to add food the the list of foods
@@ -85,7 +85,7 @@ class FoodViews():
 		"""method to edit details of a specific food"""
 		result = food_class.update_food(food_id)
 		if not result:
-			return jsonify({"message":"couldn't find food_id"})
+			return jsonify({"message":"couldn't find food_id"}), 400
 		return result
 
 	#route to delete food
@@ -94,5 +94,5 @@ class FoodViews():
 		"""method to clear a specific food"""
 		result = food_class.delete_food(food_id)
 		if not result:
-			return jsonify({"message":"couldn't find food_id"})
+			return jsonify({"message":"couldn't find food_id"}), 400
 		return result
