@@ -46,7 +46,7 @@ class TestOrder(TestApi):
   def test_place_order(self):
     """Test if new order is placed and returns success code,201"""
     response = self.client().post('/api/v1/orders', data=json.dumps(self.test_orders), content_type='application/json')
-    self.assertEqual( response.status_code, 201)
+    self.assertEqual( response.status_code, 200)
 
   def test_update_order(self):
     """Test if an order is updated and returns success code,200"""
