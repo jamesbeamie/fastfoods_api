@@ -91,7 +91,7 @@ class Foods(object):
 
     # this endpoint deletes the specified order from dictionary using the order id
     def delete_food(self, food_id):
-        """The function deletes an order specified by the id"""
+        """The function deletes an order specified by the food id"""
         for food in self.all_foods:
             if food['food_id'] == food_id:
                 self.all_foods.remove(food)
