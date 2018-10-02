@@ -27,9 +27,8 @@ class Orders(object):
         self.order['price'] = price
         self.order['food_id'] = food_id
         self.order['order_status'] = order_status
-
-        self.all_orders.append(self.order)
-        return jsonify({"message": "Order placed.", "Orders":self.all_orders}), 200
+        res = self.all_orders.append(self.order)
+        return jsonify({"message": "Order placed."}), 200
 
     def update_order(self, order_id):
         """This function edits the order place, takes user inputs in json form"""
@@ -40,8 +39,7 @@ class Orders(object):
                 order_to_update['price'] = order_details['price']
                 order_to_update['food_id'] = order_details['food_id']
                 order_to_update['order_status'] = order_details['order_status']
-                return jsonify({'Order': self.all_orders}),201
-
+                return jsonify({'Order': order_to_update}), 201
 
     # this endpoint deletes the specified(using its id) order from dictionary
     def delete_order(self, order_id):
@@ -49,7 +47,7 @@ class Orders(object):
         for order in self.all_orders:
             if order['order_id'] == order_id:
                 self.all_orders.remove(order)
-                return jsonify({'Orders': self.all_orders, "message":"DELETED"}), 200
+                return jsonify({"message":"DELETED"}), 200
 
 
 class Foods(object):
@@ -78,7 +76,7 @@ class Foods(object):
         self.food['quantity'] = quantity
 
         self.all_foods.append(self.food)
-        return jsonify({"message": "Food added.", "Foods":self.all_foods}), 200       
+        return jsonify({"message": "Food added.", "Foods":self.all_foods}), 201        
 
     def update_food(self, food_id):
         """This function edits the order by taking user inputs in json form"""
@@ -88,14 +86,13 @@ class Foods(object):
                 food_to_update['food_name'] = food_details['food_name'] 
                 food_to_update['price'] = food_details['price']
                 food_to_update['quantity'] = food_details['quantity']
-                return jsonify({'Food': self.all_foods}), 201
+                return jsonify({'Food': self.all_foods}), 200
 
     # this endpoint deletes the specified order from dictionary using the order id
     def delete_food(self, food_id):
-        """The function deletes an order specified by the food id"""
+        """The function deletes an order specified by the id"""
         for food in self.all_foods:
             if food['food_id'] == food_id:
                 self.all_foods.remove(food)
                 return jsonify({'Foods': self.all_foods, "message":"Food deleted"}), 200
-
 
