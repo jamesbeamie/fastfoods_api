@@ -197,6 +197,24 @@ class TestUser(TestApi):
         global user_tok
         user_tok =create_access_token(self.test_users[4]['username'])
         self.assertEqual( response.status_code, 200)
+        
+class TestFoods(TestApi):
+  test_foods=[{
+        "food_id": 1,
+        "food_name": "cake",
+        "price": 300,
+        "quantity":5,
+  },{
+        "food_id": 1,
+        "food_name": "cake",
+        "price": 300,
+        "quantity":5,
+  }]
+
+  def test_food_menu(self):
+    """Test if all food returned and returns success code,200"""
+    response = self.client().get('/api/v2/menu', content_type='application/json')
+    self.assertEqual( response.status_code, 200)
     
 if __name__ == "__main__":
   unittest.main()

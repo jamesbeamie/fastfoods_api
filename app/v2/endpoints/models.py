@@ -70,3 +70,25 @@ class User(object):
                 return jsonify({"Your token":create_access_token(username)}), 200
             return jsonify({"message":"User not found"}), 401
         return jsonify({"message":"Please register"})
+        
+class Foods(object):
+    def __init__(self):
+        """ Initialize empty order list"""  
+        #self.all_orders = []        
+
+    def food_menu(self):
+        """ fetch all orders """
+        con = dbcon()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM food;")
+        res = cur.fetchall()
+        menu_items=[]
+        for food in res:
+            food_item = {
+            'food_id':food[0],
+            'food_name':food[1],
+            'quantity':food[2],
+            'price':food[3]
+            }
+            menu_items.append(food_item)
+        return jsonify({"message":"Food on menu", "Food": menu_items}), 200

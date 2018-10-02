@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify, session
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from . import api2
-from .models import User
+from .models import User, Foods
 user_class = User()
-
+food_class = Foods()
 
 def validate_user( data):
   """validate user details"""
@@ -89,3 +89,11 @@ def logout():
       session.clear()
       return jsonify({"message":"Logged out"})
     return jsonify({"message":"You are not Logged in"}) 
+
+"""
+menu
+"""
+@api2.route('/menu', methods=["GET"])
+def all_food():
+  """ Method to available food in the menu."""
+  return food_class.food_menu()
