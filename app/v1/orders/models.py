@@ -26,7 +26,6 @@ class Orders(object):
         self.order['price'] = price
         self.order['food_id'] = food_id
         self.order['order_status'] = order_status
-
         res = self.all_orders.append(self.order)
         return jsonify({"message": "Order placed."})
 
