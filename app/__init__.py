@@ -11,7 +11,12 @@ from config import app_config
 
 def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
-   	#initialize db
+    app.config['JWT_SECRET_KEY']= 'mysecretkey'
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=5)
+    #initialize jwt manager
+    jwt = JWTManager(app)
+    app.config.from_object(app_config[config_name])
+    #initialize db
     init_db()
 
     from .v1.endpoints import api as api_blueprint
