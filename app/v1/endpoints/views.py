@@ -1,3 +1,5 @@
+
+
 from flask import Flask, request, jsonify
 from . import api
 from .models import Orders, Foods
@@ -28,7 +30,7 @@ class OrdersViews():
 	def all_orders():
 	  """ Method to place and get Orders."""
 	  available_orders = order_class.all_order()
-	  return available_orders, 200
+	  return available_orders
 
 	@api.route('/orders/<int:order_id>', methods=['GET'])
 	def specific(order_id, **kwargs):
@@ -37,6 +39,7 @@ class OrdersViews():
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
 		return result, 200
+
 
 	@api.route('/orders', methods=['POST'])
 	def place():
