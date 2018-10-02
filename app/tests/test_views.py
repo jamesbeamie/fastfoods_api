@@ -1,3 +1,4 @@
+
 """The module has test for the api"""
 import unittest
 import os
@@ -46,7 +47,7 @@ class TestOrder(TestApi):
   def test_place_order(self):
     """Test if new order is placed and returns success code,201"""
     response = self.client().post('/api/v1/orders', data=json.dumps(self.test_orders), content_type='application/json')
-    self.assertEqual( response.status_code, 201)
+    self.assertEqual( response.status_code, 200)
 
   def test_update_order(self):
     """Test if an order is updated and returns success code,200"""
@@ -85,7 +86,7 @@ class TestFood(TestApi):
   def test_prepared_food(self):
     """Test if new order is placed and returns success code,201"""
     response = self.client().post('/api/v1/food', data=json.dumps(self.test_food), content_type='application/json')
-    self.assertEqual( response.status_code, 201)
+    self.assertEqual( response.status_code, 200)
 
   def test_update_fud(self):
     """Test if a food is updated and returns success code,200"""
@@ -107,3 +108,5 @@ class TestFood(TestApi):
     
 if __name__ == "__main__":
   unittest.main()
+
+    
