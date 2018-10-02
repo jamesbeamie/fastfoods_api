@@ -40,6 +40,7 @@ class OrdersViews():
 			return jsonify({"message":"couldn't find order_id"})
 		return result, 200
 
+
 	@api.route('/orders', methods=['POST'])
 	def place():
 	  data = request.get_json()

@@ -30,7 +30,7 @@ class TestOrder(TestApi):
         }
 
   def test_return_all(self):
-      """Test if all orders are returned """
+      """Test if all orders are returned and returns success code,200"""
       response = self.client().get('/api/v1/orders', 
         content_type='application/json')
       self.assertEqual( response.status_code, 200)
