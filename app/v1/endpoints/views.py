@@ -7,12 +7,28 @@ food_class = Foods()
 """
 orders
 """
+def validate_data(data):
+    """validate input data """
+    try:
+        #check if the food name is provided
+        if len(data['food_name']) == 0:
+            return "Enter food name"
+        # check if food price is valid
+        elif " " in data['price']:
+            return "Invalid food price"
+        #elif data['order_status'] == "accepted" or data['order_status'] != "declined":
+            #return "Order status should be accepted or declined"
+        else:
+            return "valid"
+    except Exception as error:
+        return "please provide all the fields, missing " + str(error)
+
 class OrdersViews():
 	@api.route('/orders', methods=["GET"])
 	def all_orders():
 	  """ Method to place and get Orders."""
 	  available_orders = order_class.all_order()
-	  return available_orders
+	  return available_orders, 200
 
 	@api.route('/orders/<int:order_id>', methods=['GET'])
 	def specific(order_id, **kwargs):
@@ -20,17 +36,20 @@ class OrdersViews():
 		result = order_class.return_specific(order_id)
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
-		return result
+		return result, 200
 
 	@api.route('/orders', methods=['POST'])
 	def place():
-		data = request.get_json()
-		food_name = data['food_name']
-		price = data['price']
-		food_id = data['food_id']
-		order_status = data['order_status']
-		res = order_class.place_order(food_name, price, food_id, order_status)
-		return res
+	  data = request.get_json()
+	  res = validate_data(data)
+	  food_name = data['food_name']
+	  price = data['price']
+	  food_id = data['food_id']
+	  order_status = data['order_status']
+	  if res == "valid":
+	    result = order_class.place_order(food_name, price, food_id, order_status)
+	    return result, 200
+	  return jsonify({"message":res})
 
 	@api.route('/orders/<int:order_id>', methods=['PUT'])
 	def update(order_id, **kwargs):
@@ -38,7 +57,7 @@ class OrdersViews():
 		result = order_class.update_order(order_id)
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
-		return result
+		return result, 201
 
 	@api.route('/orders/<int:order_id>', methods=['DELETE'])
 	def to_delete(order_id, **kwargs):
@@ -46,7 +65,7 @@ class OrdersViews():
 		result = order_class.delete_order(order_id)
 		if not result:
 			return jsonify({"message":"couldn't find order_id"})
-		return result
+		return result, 200
 
 
 """
