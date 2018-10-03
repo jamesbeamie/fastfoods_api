@@ -5,6 +5,7 @@ from datetime import timedelta
 from flask import Flask
 from .dbconect import init_db
 
+
 # local imports
 from config import app_config
 
@@ -23,5 +24,7 @@ def create_app(config_name):
     app.register_blueprint(api_blueprint, url_prefix='/api/v1')
     from .v2.endpoints import api2 as api2_blueprint
     app.register_blueprint(api2_blueprint, url_prefix='/api/v2')
+
     
     return app
+  
