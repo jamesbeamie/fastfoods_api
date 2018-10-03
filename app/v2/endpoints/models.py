@@ -105,3 +105,18 @@ class Foods(object):
         cur.execute("INSERT INTO food (food_name, price, quantity) VALUES (%(food_name)s,%(price)s,%(quantity)s);",{'food_name':food_name,'price':price,'quantity':quantity})
         con.commit()
         return jsonify({"message":"food added to menu"}), 200
+
+"""
+Orders
+"""
+class Orders(User):
+    def __init__(self):
+        """ Initialize empty order list""" 
+
+    def all_order_admin(self):
+        """ fetch all orders """
+        con = dbcon()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM myorders;")
+        res = cur.fetchall()
+        return jsonify({"message":"retrieved", "Orders": res}), 200

@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify, session
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from . import api2
-from .models import User, Foods
+from .models import User, Foods, Orders
 user_class = User()
 food_class = Foods()
+order_class = Orders()
 
 def validate_user( data):
   """validate user details"""
@@ -111,3 +112,17 @@ def add_food():
     return food_class.add_to_menu(food_name, price, quantity)
 
   return jsonify({"message":"unauthorized"}),401
+
+"""
+Orders
+"""
+@api2.route('/orders', methods=["GET"])
+@jwt_required
+def admin_all_orders():
+  """ Method to available food in the menu."""
+  logedin = get_jwt_identity()
+  adm=user_class.is_admin(logedin)
+  if adm == True:
+    return order_class.all_order_admin()
+  else:
+    return jsonify({"msg":"unauthorized"})

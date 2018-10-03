@@ -224,6 +224,15 @@ class TestFoods(TestApi):
       content_type='application/json',
       headers={'Authorization': 'Bearer ' + admin_tok})
     self.assertEqual( response.status_code, 200)
+
+class TestOrders(TestApi):
+
+   def test_admin_all_orders(self):
+    """Test if all orders returned and returns success code,200"""
+    response = self.client().get('/api/v2/orders', 
+      content_type='application/json',
+      headers={'Authorization': 'Bearer ' + admin_tok})
+    self.assertEqual( response.status_code, 200)
   
 if __name__ == "__main__":
   unittest.main()
