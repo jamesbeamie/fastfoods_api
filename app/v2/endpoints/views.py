@@ -133,3 +133,15 @@ def user_all_orders():
   """Get order history for a particular order"""
   username = get_jwt_identity()
   return order_class.all_order_user(username)
+
+@api2.route('/orders', methods=['POST'])
+@jwt_required
+def place_order():
+  uname = get_jwt_identity()
+  data = request.get_json()
+  food_name = data['food_name']
+  username = data['username']
+  price = data['price']
+  food_id = data['food_id']
+  order_status = data['order_status']
+  return order_class.create_order(food_name,username, price, food_id, order_status)

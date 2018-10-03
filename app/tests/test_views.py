@@ -226,21 +226,43 @@ class TestFoods(TestApi):
     self.assertEqual( response.status_code, 200)
 
 class TestOrders(TestApi):
+  test_order=[{
+        "food_id": 1,
+        "food_name": "cake",
+        "username": "james",
+        "price":200,
+        "food_id": 3,
+        "order_status":"accepted"
+  },{
+       "food_id": 1,
+        "food_name": "cake",
+        "username": "james",
+        "price":200,
+        "food_id": 3,
+        "order_status":"accepted"
+  }]
 
-   def test_admin_all_orders(self):
+  def test_admin_all_orders(self):
     """Test if all orders returned and returns success code,200"""
     response = self.client().get('/api/v2/orders', 
       content_type='application/json',
       headers={'Authorization': 'Bearer ' + admin_tok})
     self.assertEqual( response.status_code, 200)
 
-  
-   def test_user_all_orders(self):
+  def test_user_all_orders(self):
     """Test if all orders returned and returns success code,200"""
     response = self.client().get('/api/v2/users/orders', 
       content_type='application/json',
       headers={'Authorization': 'Bearer ' + admin_tok})
     self.assertEqual( response.status_code, 200)
+
+  def test_palce_order(self):
+      """Test if an order is added"""
+      response = self.client().post('/api/v2/orders',
+      data=json.dumps(self.test_order[0]), 
+        content_type='application/json',
+        headers={'Authorization': 'Bearer ' + admin_tok})
+      self.assertEqual( response.status_code, 200)
   
 if __name__ == "__main__":
   unittest.main()

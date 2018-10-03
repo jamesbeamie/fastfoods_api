@@ -128,3 +128,16 @@ class Orders(User):
         cur.execute("SELECT * FROM myorders WHERE username=%(username)s",{"username":username})
         res = cur.fetchall()
         return jsonify({"message":"retrieved", "Orders": res}), 200
+
+    def create_order(self, food_name,username, price, food_id, order_status):
+        """Create order"""
+        con = dbcon()
+        cur = con.cursor()
+        #if food already exists
+        cur.execute("SELECT * FROM myorders WHERE food_name=%(food_name)s",{"food_name":food_name})
+        available = cur.fetchall()
+        if available:
+            return make_response(jsonify({"Message":"Food already in menu"}))
+        cur.execute("INSERT INTO myorders (food_name,username, price, food_id, order_status) VALUES (%(food_name)s,%(username)s,%(price)s,%(food_id)s,%(order_status)s);",{'food_name':food_name,'username':username,'price':price,'food_id':food_id, 'order_status':order_status})
+        con.commit()
+        return make_response(jsonify({"message":"food added to menu"}),200)
