@@ -20,7 +20,6 @@ class User(object):
         cur.execute("SELECT * FROM my_users WHERE username=%(username)s", {'username':username})
         rows = cur.rowcount
         if rows > 0:
-            
             return True
         return False
 
@@ -37,13 +36,13 @@ class User(object):
     def create(self, username, password, confirmpass, addres, contact, user_type):
         """Create users"""
         if self.valid_user(username):
-            return jsonify({"message":"User taken"}),200
+            return jsonify({"message":"User already exists"}),200
         else:
             con = dbcon()
             cur = con.cursor()
             cur.execute("INSERT INTO my_users (username, password, confirmpass, addres, contact, user_type) VALUES (%(username)s,%(password)s,%(confirmpass)s,%(addres)s,%(contact)s,%(user_type)s);",{'username':username,'password':password,'confirmpass':confirmpass,'addres':addres,'contact':contact,'user_type':user_type})
             con.commit()
-            return make_response(jsonify({"message":"user created"}), 200)
+            return make_response(jsonify({"message":"user created successfully"}), 200)
 
     def view_users(self):
         con = dbcon()

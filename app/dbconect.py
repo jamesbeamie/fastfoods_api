@@ -5,11 +5,9 @@ import os
 from .mydb import queries
 
 def dbcon():
-	#export(should be expoted so that i import)
-	#url = os.getenv('DATABASE_URL')
-
+	url = os.getenv('DATABASE_URL')
 	#set connection
-	con = psycopg2.connect('dbname=challenge1 host=localhost user=andela password=bootcamp')
+	con = psycopg2.connect(url)
 	return con
 
 def init_db():
