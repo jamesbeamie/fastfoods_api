@@ -11,8 +11,8 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'CREATE DATABASE fastfood' -U postgres
-  - psql -c "CREATE USER andela WITH PASSWORD 'andelan';" -U postgres
+  - psql -c "CREATE ROLE andela WITH createdb login PASSWORD 'andelan';" -U postgres
+  - psql -c 'CREATE DATABASE fastfood owner andela' -U postgres
     
 # command to run tests
 script:
