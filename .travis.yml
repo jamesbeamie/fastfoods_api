@@ -1,16 +1,24 @@
 language: python
+
 python:
   - "3.6"
   
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-  
+
+services:
+  - postgresql
+
+before_script:
+  #dbname=challenge1 host=localhost user=andela password=bootcamp'
+  - psql -c "CREATE ROLE andela WITH createdb login PASSWORD 'andelan';" -U postgres
+  - psql -c 'CREATE DATABASE challenge1 owner andela' -U postgres
+    
 # command to run tests
 script:
   - pytest --cov=app/tests/ 
 
 # Running coverals
-
 after_success:
   - coveralls
