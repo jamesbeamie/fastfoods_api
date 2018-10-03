@@ -199,11 +199,31 @@ class TestUser(TestApi):
         self.assertEqual( response.status_code, 200)
 
 class TestFoods(TestApi):
-
+  test_foods=[{
+      "food_id": 1,
+      "food_name": "cake",
+      "price": 300,
+      "quantity":5,
+  },{
+      "food_id": 1,
+      "food_name": "cake",
+      "price": 300,
+      "quantity":5,
+  }]
+  
   def test_food_menu(self):
     """Test if all food returned and returns success code,200"""
     response = self.client().get('/api/v2/menu', content_type='application/json')
     self.assertEqual( response.status_code, 200)
-    
+      
+
+  def test_add_food(self):
+    """Test if a food is added to menu"""
+    response = self.client().post('/api/v2/menu',
+    data=json.dumps(self.test_foods[0]), 
+      content_type='application/json',
+      headers={'Authorization': 'Bearer ' + admin_tok})
+    self.assertEqual( response.status_code, 200)
+  
 if __name__ == "__main__":
   unittest.main()

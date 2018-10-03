@@ -97,3 +97,17 @@ menu
 def all_food():
   """ Method to available food in the menu."""
   return food_class.food_menu()
+
+@api2.route('/menu', methods=['POST'])
+@jwt_required
+def add_food():
+  logedin = get_jwt_identity()
+  adm=user_class.is_admin(logedin)
+  if adm == True:
+    data = request.get_json()
+    food_name = data['food_name']
+    price = data['price']
+    quantity = data['quantity']
+    return food_class.add_to_menu(food_name, price, quantity)
+
+  return jsonify({"message":"unauthorized"}),401
