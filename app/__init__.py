@@ -24,3 +24,4 @@ def create_app(config_name):
     app.register_blueprint(api2_blueprint, url_prefix='/api/v2')
     
     return app
+  
