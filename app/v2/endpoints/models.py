@@ -120,3 +120,11 @@ class Orders(User):
         cur.execute("SELECT * FROM myorders;")
         res = cur.fetchall()
         return jsonify({"message":"retrieved", "Orders": res}), 200
+
+    def all_order_user(self, username):
+        """ fetch all orders for a specific user"""
+        con = dbcon()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM myorders WHERE username=%(username)s",{"username":username})
+        res = cur.fetchall()
+        return jsonify({"message":"retrieved", "Orders": res}), 200

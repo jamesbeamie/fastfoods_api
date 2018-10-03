@@ -126,3 +126,10 @@ def admin_all_orders():
     return order_class.all_order_admin()
   else:
     return jsonify({"msg":"unauthorized"})
+
+@api2.route('/users/orders', methods=["GET"])
+@jwt_required
+def user_all_orders():
+  """Get order history for a particular order"""
+  username = get_jwt_identity()
+  return order_class.all_order_user(username)
