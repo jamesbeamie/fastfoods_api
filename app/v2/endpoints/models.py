@@ -141,3 +141,23 @@ class Orders(User):
         cur.execute("INSERT INTO myorders (food_name,username, price, food_id, order_status) VALUES (%(food_name)s,%(username)s,%(price)s,%(food_id)s,%(order_status)s);",{'food_name':food_name,'username':username,'price':price,'food_id':food_id, 'order_status':order_status})
         con.commit()
         return make_response(jsonify({"message":"food added to menu"}),200)
+
+    def update_order(self, order_id):
+        """This function edits the order placed, takes user inputs in json form"""
+        order_details = request.get_json()
+        food_name = order_details['food_name']
+        username = order_details['username']
+        price = order_details['price']
+        food_id = order_details['food_id']
+        order_status = order_details['order_status']
+        
+        #if user is admin
+
+        con = dbcon()
+        cur = con.cursor()
+        cur.execute("UPDATE  myorders SET food_name=%s, username=%s, price=%s, food_id= %s, order_status= %s WHERE order_id=%s",(food_name, username, price, food_id, order_status, order_id))
+        con.commit()
+            
+        cur.execute("SELECT * FROM myorders")
+        res = cur.fetchall()
+        return make_response(jsonify({'message': 'Order updated'}), 201)

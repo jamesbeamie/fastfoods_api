@@ -145,3 +145,13 @@ def place_order():
   food_id = data['food_id']
   order_status = data['order_status']
   return order_class.create_order(food_name,username, price, food_id, order_status)
+
+@api2.route('/orders/<int:order_id>', methods=['PUT'])
+@jwt_required
+def update_order_adm(order_id, **kwargs):
+  logedin = get_jwt_identity()
+  adm=user_class.is_admin(logedin)
+  if adm == True:
+    return order_class.update_order(order_id)
+
+  return jsonify({"message":"unauthorized"}),401

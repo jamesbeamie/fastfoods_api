@@ -253,7 +253,7 @@ class TestOrders(TestApi):
     """Test if all orders returned and returns success code,200"""
     response = self.client().get('/api/v2/users/orders', 
       content_type='application/json',
-      headers={'Authorization': 'Bearer ' + admin_tok})
+      headers={'Authorization': 'Bearer ' + user_tok})
     self.assertEqual( response.status_code, 200)
 
   def test_palce_order(self):
@@ -263,6 +263,16 @@ class TestOrders(TestApi):
         content_type='application/json',
         headers={'Authorization': 'Bearer ' + admin_tok})
       self.assertEqual( response.status_code, 200)
+
+  def test_update_order(self):
+    """Test if a food is updated and returns success code,200"""
+    response = self.client().put('/api/v2/orders/1', 
+      data=json.dumps(self.test_order[1]), 
+      content_type='application/json',
+      headers={'Authorization': 'Bearer ' + admin_tok})
+    print(response.data)
+    self.assertEqual( response.status_code, 201)
+
   
 if __name__ == "__main__":
   unittest.main()
