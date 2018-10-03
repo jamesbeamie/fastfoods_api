@@ -67,7 +67,7 @@ class User(object):
             #rows = cur.rowcount
             user = cur.fetchone()
             if user != None:
-                return jsonify({"Your token":create_access_token(username)}), 200
+                return jsonify({"User token":create_access_token(username)}), 200
             return jsonify({"message":"User not found"}), 401
         return jsonify({"message":"Please register"})
         
