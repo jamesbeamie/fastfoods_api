@@ -104,6 +104,8 @@ class TestFood(TestApi):
         }
     response = self.client().put('/api/v1/food/5', 
       data=json.dumps(test_update_fud), content_type='application/json')
+    print(response.data)
+
     self.assertEqual( response.status_code, 200)
 
   def test_delete_fud(self):
