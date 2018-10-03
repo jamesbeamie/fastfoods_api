@@ -1,6 +1,6 @@
 ## FAST_FOOD_FAST
 [![Build Status](https://travis-ci.org/jamesbeamie/fastfoods_api.svg?branch=develop)](https://travis-ci.org/jamesbeamie/fastfoods_api) [![Coverage Status](https://coveralls.io/repos/github/jamesbeamie/fastfoods_api/badge.svg?branch=develop)](https://coveralls.io/github/jamesbeamie/fastfoods_api?branch=develop)
-An application interface for the fast food application.
+ - An application interface for the fast food application.
  - This API has end points that allows the user to place a new order for food,
  - get a list of orders, get a specific order and update order status and delete the order.
 
