@@ -155,3 +155,15 @@ def update_order_adm(order_id, **kwargs):
     return order_class.update_order(order_id)
 
   return jsonify({"message":"unauthorized"}),401
+
+@api2.route('/orders/<int:order_id>', methods=['GET'])
+@jwt_required
+def specific(order_id, **kwargs):
+  """method to return a specific order"""
+  logedin = get_jwt_identity()
+  adm = user_class.is_admin(logedin)
+  if adm == True:
+    result = order_class.get_specific_order(order_id)
+    if not result:
+      return jsonify({"message":"could not find order_id"}), 400
+    return result

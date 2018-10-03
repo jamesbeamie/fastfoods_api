@@ -161,3 +161,11 @@ class Orders(User):
         cur.execute("SELECT * FROM myorders")
         res = cur.fetchall()
         return make_response(jsonify({'message': 'Order updated'}), 201)
+
+    def get_specific_order(self, order_id):
+        """The function gets an order specified by the id"""
+        con = dbcon()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM myorders WHERE order_id=%(order_id)s",{'order_id':order_id})
+        res = cur.fetchall()
+        return jsonify({"order":res})
