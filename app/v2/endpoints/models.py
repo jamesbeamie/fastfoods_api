@@ -103,7 +103,7 @@ class Foods(object):
             menu_items.append(food_item)
         return jsonify({"message":"Food on menu", "Food": menu_items}), 200
 
-    def add_to_menu(self, food_name, price, quantity):
+    def add_to_menu(self, food_name, price):
         """Create order"""
         con = dbcon()
         cur = con.cursor()
@@ -112,7 +112,7 @@ class Foods(object):
         available = cur.fetchall()
         if available:
             return jsonify({"Message":"Food aready in menu"})
-        cur.execute("INSERT INTO food (food_name, price, quantity) VALUES (%(food_name)s,%(price)s,%(quantity)s);",{'food_name':food_name,'price':price,'quantity':quantity})
+        cur.execute("INSERT INTO food (food_name, price) VALUES (%(food_name)s,%(price)s);",{'food_name':food_name,'price':price})
         con.commit()
         return jsonify({"message":"food added to menu"}), 200
 

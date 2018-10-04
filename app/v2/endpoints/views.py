@@ -108,8 +108,7 @@ def add_food():
     data = request.get_json()
     food_name = data['food_name']
     price = data['price']
-    quantity = data['quantity']
-    return food_class.add_to_menu(food_name, price, quantity)
+    return food_class.add_to_menu(food_name, price)
 
   return jsonify({"message":"Sorry ! you are restricted"}),401
 
