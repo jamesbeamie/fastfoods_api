@@ -74,14 +74,14 @@ class TestUser(TestApi):
       response = self.client().post('/api/v2/signup',
       data=json.dumps(self.test_users[0]), 
         content_type='application/json')
-      self.assertEqual( response.status_code, 200)
+      self.assertEqual( response.status_code, 201)
 
   def test_user_signup(self):
-      """Test if all orders are returned and returns success code,200"""
+      """Test if the user is signed up"""
       response = self.client().post('/api/v2/signup',
       data=json.dumps(self.test_users[3]), 
         content_type='application/json')
-      self.assertEqual( response.status_code, 200)
+      self.assertEqual( response.status_code, 201)
 
   def test_admin_signin(self):
       """Test if all orders are returned and returns success code,200"""
@@ -118,7 +118,8 @@ class TestFoods(TestApi):
   
   def test_food_menu(self):
     """Test if all food returned and returns success code,200"""
-    response = self.client().get('/api/v2/menu', content_type='application/json')
+    response = self.client().get('/api/v2/menu', 
+      content_type='application/json')
     self.assertEqual( response.status_code, 200)
       
 
@@ -155,7 +156,7 @@ class TestOrders(TestApi):
     self.assertEqual( response.status_code, 200)
 
   def test_user_all_orders(self):
-    """Test if all orders returned and returns success code,200"""
+    """Test if all orders for a user are returned"""
     response = self.client().get('/api/v2/users/orders', 
       content_type='application/json',
       headers={'Authorization': 'Bearer ' + user_tok})
@@ -163,13 +164,6 @@ class TestOrders(TestApi):
 
   def test_place_order(self):
       """Test if an order is added"""
-      response = self.client().post('/api/v2/orders',
-      data=json.dumps(self.test_order[0]), 
-        content_type='application/json')
-      self.assertEqual( response.status_code, 200)
-
-  def test_unique_order(self):
-      """Test  if an order is added"""
       response = self.client().post('/api/v2/orders',
       data=json.dumps(self.test_order[0]), 
         content_type='application/json')
