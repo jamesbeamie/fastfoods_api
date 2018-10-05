@@ -3,6 +3,9 @@ language: python
 python:
   - "3.6"
   
+env:
+  - export FLASK_ENV ="development"
+  
 # command to install dependencies
 install:
   - pip install -r requirements.txt
