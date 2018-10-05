@@ -10,7 +10,9 @@ def validate_user( data):
   """validate user details"""
   try:
       # check if the username is more than 3 characters
-      if len(data['username'].strip()) < 3:
+      if type(data['username']) != str:
+          return "username can only be a string"
+      elif len(data['username'].strip()) < 3:
           return "username must be more than 3 characters"
       # check if password has space
       elif " " in data["password"]:
@@ -20,22 +22,6 @@ def validate_user( data):
       # check if the passwords match
       elif data['password'] != data['confirmpass']:
           return "passwords do not match"
-      else:
-          return "valid"
-  except Exception as error:
-      return "please provide all the fields, missing " + str(error)
-
-def validate_login( data):
-  """validate user credentials while loging in"""
-  try:
-      # check if the username is more than 3 characters
-      if len(data['username'].strip()) < 3:
-          return "username must be more than 3 characters"
-      # check if password has space
-      elif " " in data["password"]:
-          return "password should be one without spaces"
-      elif len(data['password'].strip()) < 5:
-          return "Password should have atleast 5 characters"
       else:
           return "valid"
   except Exception as error:
@@ -75,13 +61,11 @@ def remove_user(username, **kwargs):
 def login():
     """ Method to login user """
     data = request.get_json()
-    res = validate_login(data)
     username = data['username']
     password = data['password']
-    if res == "valid":
-      result = user_class.login(username, password)
-      return result
-    return jsonify({"message":res}), 400
+    result = user_class.login(username, password)
+    return result
+    
 
 @api2.route('/logout', methods=["GET"])
 def logout():
@@ -96,12 +80,13 @@ menu
 """
 @api2.route('/menu', methods=["GET"])
 def all_food():
-  """ Method to available food in the menu."""
+  """ Method to get available food in the menu."""
   return food_class.food_menu()
 
 @api2.route('/menu', methods=['POST'])
 @jwt_required
 def add_food():
+  """Method to add food to menu"""
   logedin = get_jwt_identity()
   adm=user_class.is_admin(logedin)
   if adm == True:
@@ -135,6 +120,7 @@ def user_all_orders():
 
 @api2.route('/orders', methods=['POST'])
 def place_order():
+  """method to place an order"""
   data = request.get_json()
   food_name = data['food_name']
   username = data['username']
@@ -145,6 +131,7 @@ def place_order():
 @api2.route('/orders/<int:order_id>', methods=['PUT'])
 @jwt_required
 def update_order_adm(order_id, **kwargs):
+  """method for the admin to update order status"""
   logedin = get_jwt_identity()
   adm=user_class.is_admin(logedin)
   if adm == True:

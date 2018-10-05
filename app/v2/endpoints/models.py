@@ -18,7 +18,8 @@ class User(object):
         """Checks if user exists"""
         con = dbcon()
         cur = con.cursor()
-        cur.execute("SELECT * FROM my_users WHERE username=%(username)s", {'username':username})
+        cur.execute("SELECT * FROM my_users WHERE username=%(username)s",\
+         {'username':username})
         rows = cur.rowcount
         if rows > 0:
             return True
@@ -27,7 +28,8 @@ class User(object):
     def is_admin(self, username):
         con = dbcon()
         cur = con.cursor()
-        cur.execute("SELECT * FROM my_users WHERE username=%(username)s",{"username":username})
+        cur.execute("SELECT * FROM my_users WHERE username=%(username)s",\
+            {"username":username})
         res = cur.fetchone()
         if res[6] != 'admin':
             return False
@@ -37,13 +39,17 @@ class User(object):
     def create(self, username, password, confirmpass, addres, contact, user_type):
         """Create users"""
         if self.valid_user(username):
-            return jsonify({"message":"Username already taken"}),200
+            return jsonify({"message":"Username already taken"}),201
         else:
             con = dbcon()
             cur = con.cursor()
-            cur.execute("INSERT INTO my_users (username, password, confirmpass, addres, contact, user_type) VALUES (%(username)s,%(password)s,%(confirmpass)s,%(addres)s,%(contact)s,%(user_type)s);",{'username':username,'password':password,'confirmpass':confirmpass,'addres':addres,'contact':contact,'user_type':user_type})
+            cur.execute("INSERT INTO my_users (username, password, confirmpass, \
+                addres, contact, user_type) VALUES (%(username)s,%(password)s,\
+                %(confirmpass)s,%(addres)s,%(contact)s,%(user_type)s);",\
+                {'username':username,'password':password,'confirmpass':confirmpass,\
+                'addres':addres,'contact':contact,'user_type':user_type})
             con.commit()
-            return make_response(jsonify({"message":"user created successfully"}), 200)
+            return make_response(jsonify({"message":"user created successfully"}), 201)
 
     def view_users(self):
         con = dbcon()
@@ -67,7 +73,8 @@ class User(object):
     def delete_user(self, username):
         con = dbcon()
         cur = con.cursor()
-        cur.execute("DELETE FROM my_users WHERE username=%(username)s",{'username':username})
+        cur.execute("DELETE FROM my_users WHERE username=%(username)s",\
+            {'username':username})
         con.commit()
         return jsonify({'message': 'User deleted successfully'})
 
@@ -75,7 +82,8 @@ class User(object):
         if self.valid_user(username):
             con = dbcon()
             cur = con.cursor()
-            cur.execute("SELECT * FROM my_users WHERE username=%(username)s and password=%(password)s",{'username':username, 'password':password})
+            cur.execute("SELECT * FROM my_users WHERE username=%(username)s \
+                and password=%(password)s",{'username':username, 'password':password})
             user = cur.fetchone()
             if user != None:
                 return jsonify({"User token":create_access_token(username)}), 200
@@ -108,13 +116,15 @@ class Foods(object):
         con = dbcon()
         cur = con.cursor()
         #if food already exists
-        cur.execute("SELECT * FROM food WHERE food_name=%(food_name)s",{"food_name":food_name})
+        cur.execute("SELECT * FROM food WHERE food_name=%(food_name)s",\
+            {"food_name":food_name})
         available = cur.fetchall()
         if available:
             return jsonify({"Message":"Food aready in menu"})
-        cur.execute("INSERT INTO food (food_name, price) VALUES (%(food_name)s,%(price)s);",{'food_name':food_name,'price':price})
+        cur.execute("INSERT INTO food (food_name, price) VALUES (%(food_name)s,\
+        %(price)s);",{'food_name':food_name,'price':price})
         con.commit()
-        return jsonify({"message":"food added to menu"}), 200
+        return jsonify({"message":"food added to menu"}), 201
 
 """
 Orders
@@ -145,7 +155,7 @@ class Orders(User):
         """ fetch all orders for a specific user"""
         con = dbcon()
         cur = con.cursor()
-        cur.execute("SELECT * FROM myorders WHERE username=%(username)s",{"username":username})
+        cur.execute("SELECT * FROM myorders;")
         res = cur.fetchall()
         user_orders=[]
         for orders in res:
@@ -164,13 +174,14 @@ class Orders(User):
         con = dbcon()
         cur = con.cursor()
         #if food already exists
-        cur.execute("SELECT * FROM myorders WHERE food_name=%(food_name)s",{"food_name":food_name})
+        cur.execute("SELECT * FROM myorders WHERE food_name=%(food_name)s",\
+            {"food_name":food_name})
         available = cur.fetchall()
         if available:
             return make_response(jsonify({"Message":"Food already in your orders"}))
         cur.execute("INSERT INTO myorders (food_name,username, food_id, order_status) VALUES (%(food_name)s,%(username)s,%(food_id)s,%(order_status)s);",{'food_name':food_name,'username':username,'food_id':food_id, 'order_status':order_status})
         con.commit()
-        return make_response(jsonify({"message":"food added to menu"}),200)
+        return make_response(jsonify({"message":"food added to menu"}),201)
 
     def update_order(self, order_id):
         """This function edits the order placed, takes user inputs in json form"""
@@ -184,7 +195,9 @@ class Orders(User):
 
         con = dbcon()
         cur = con.cursor()
-        cur.execute("UPDATE  myorders SET food_name=%s, username=%s, food_id= %s, order_status= %s WHERE order_id=%s",(food_name, username, food_id, order_status, order_id))
+        cur.execute("UPDATE  myorders SET food_name=%s, username=%s, \
+            food_id= %s, order_status= %s WHERE order_id=%s",\
+            (food_name, username, food_id, order_status, order_id))
         con.commit()
             
         cur.execute("SELECT * FROM myorders")
@@ -195,7 +208,8 @@ class Orders(User):
         """The function gets an order specified by the id"""
         con = dbcon()
         cur = con.cursor()
-        cur.execute("SELECT * FROM myorders WHERE order_id=%(order_id)s",{'order_id':order_id})
+        cur.execute("SELECT * FROM myorders WHERE order_id=%(order_id)s",\
+            {'order_id':order_id})
         res = cur.fetchall()
         user_orders=[]
         for orders in res:
