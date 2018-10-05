@@ -121,10 +121,10 @@ class Foods(object):
         available = cur.fetchall()
         if available:
             return jsonify({"Message":"Food aready in menu"})
-            cur.execute("INSERT INTO food (food_name, price) VALUES (%(food_name)s,\
-            %(price)s);",{'food_name':food_name,'price':price})
-            con.commit()
-            return jsonify({"message":"food added to menu"}), 201
+        cur.execute("INSERT INTO food (food_name, price) VALUES (%(food_name)s,\
+        %(price)s);",{'food_name':food_name,'price':price})
+        con.commit()
+        return jsonify({"message":"food added to menu"}), 201
 
 """
 Orders
