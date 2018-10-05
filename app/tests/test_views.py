@@ -129,7 +129,7 @@ class TestFoods(TestApi):
     data=json.dumps(self.test_foods[0]), 
       content_type='application/json',
       headers={'Authorization': 'Bearer ' + admin_tok})
-    self.assertEqual( response.status_code, 200)
+    self.assertEqual( response.status_code, 201)
 
 class TestOrders(TestApi):
   test_order=[{
@@ -167,7 +167,7 @@ class TestOrders(TestApi):
       response = self.client().post('/api/v2/orders',
       data=json.dumps(self.test_order[0]), 
         content_type='application/json')
-      self.assertEqual( response.status_code, 200)
+      self.assertEqual( response.status_code, 201)
 
   def test_update_order(self):
     """Test if a food is updated and returns success code,200"""
